@@ -1,0 +1,14 @@
+{
+    "name": "jacke/opendata",
+    "description": "Airport Map",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jakob Pupke",
+            "email": "jakob.pupke@gmail.com"
+        }
+    ],
+    "require": {
+        "silex/silex": "~1.1"
+    }
+}

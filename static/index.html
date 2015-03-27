@@ -1,0 +1,66 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta lang="en">
+		
+		<link rel="stylesheet" href="static/css/reset.css">
+		<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/css/jquery-ui.min.css">
+		<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.css' rel='stylesheet' />
+		<link href='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/MarkerCluster.Default.css' rel='stylesheet' />
+		<link rel="stylesheet" href="https://api.tiles.mapbox.com/mapbox.js/v2.0.0/mapbox.css">
+		<link rel="stylesheet" href="static/css/main.css">
+	</head>
+
+	<body>
+		<nav class="navbar navbar-default" role="navigation">
+   			<div class="navbar-header">
+      			<a href="index.htm" title="Reload Page" class="navbar-brand">Airports</a>
+   			</div>
+  			<div>
+	      		<ul class="nav navbar-nav">
+				  <li class="dropdown">
+				    <a class="dropdown-toggle" data-toggle="dropdown">Toggle Airport Size</a>
+				    <ul class="dropdown-menu" id="dropdown">
+				    	<li id="toggle_small" class="modeToggle" value="small_airport" onclick="setMode(1);setMarkers();">
+				    		<a>Small Airports</a>
+				    	</li>
+				    	<li id="toggle_medium" class="modeToggle" value="medium_airport" onclick="setMode(2);setMarkers();">
+				    		<a>Medium Airports</a>
+				    	</li>
+				    	<li id="toggle_large" class="modeToggle" value="large_airport" onclick="setMode(3);setMarkers();">
+				    		<a>Large Airports</a>
+				    	</li>
+				    </ul>
+				  </li>
+				  <li><a href="#" onclick="getStatistics()">Show Statistics</a></li>
+				  <li><a>Mode: <span style="background-color: #FFCC00; border-radius: 4px; padding: 2px;" id="airport_feedback">Large Airports</span></a></li>
+				  <li><a>Displaying <span style="background-color: #C7AFBD; border-radius: 4px; padding: 2px;" id="markers_count">...</span><span> Airports</span></a></li>
+				  <li><a id="loader"><img src="static/res/ajax-loader.gif"></a></li>
+
+				  <li id="form_div">
+					<input id="search_input" type="text" placeholder="Search by Airports, Cities, Countries or IATA Code">
+				  </li>
+				</ul>
+		   	</div>
+		</nav> 
+		
+		<section id="stats">
+			<button onclick="hideStats()">Hide Statistics >></button>
+			<h2 id="statsName"></h2>
+			<ul id="statsContainer"></ul>
+			<div id="statsOverview"><ul></ul></div>
+		</section>
+		<section id="map"></section>
+
+		<script type="text/javascript" src="static/js/jquery-2.1.1.min.js"></script>
+		<script type="text/javascript" src="static/js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="static/js/underscore-min.js"></script>
+		<script type="text/javascript" src="static/bootstrap/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="https://api.tiles.mapbox.com/mapbox.js/v2.0.0/mapbox.js"></script>
+		<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-markercluster/v0.4.0/leaflet.markercluster.js'></script>
+		<script type="text/javascript" src="static/js/main.js"></script>
+		<script type="text/javascript" src="static/js/stats.js"></script>
+	</body>
+</html>

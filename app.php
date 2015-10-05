@@ -25,7 +25,7 @@ $app->get('/', function () use ($app) {
 
 $app->get('/within', function (Request $request) use ($app) {
 
- 	$query = 'SELECT * FROM tbl_airp WHERE (latitude_deg BETWEEN ' .
+ 	$query = 'SELECT * FROM airports WHERE (latitude_deg BETWEEN ' .
  		$request->get('lat1') . ' AND ' . $request->get('lat2') . ') AND (longitude_deg BETWEEN ' .
  		$request->get('lon1') . ' AND ' . $request->get('lon2') .') AND type = "large_airport"';
 

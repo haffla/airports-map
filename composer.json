@@ -9,6 +9,7 @@
         }
     ],
     "require": {
-        "silex/silex": "~1.1"
+        "silex/silex": "~1.1",
+        "herrera-io/silex-pdo": "^1.2"
     }
 }

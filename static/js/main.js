@@ -34,13 +34,13 @@ $(function() {
 	function pinTheMap(data){
 	  var airports = $.parseJSON(data);
 	  map.removeLayer(markers);
-		$('#markers_count').html(data.length);
+		$('#markers_count').html(Object.keys(airports).length);
 
 	  var markerArray = [];
 	  for (var key in airports){
 	  	var airport = airports[key];
 	    var wiki = airport.wikipedia_link ? "<a target=\"_blank\" href=" + airport.wikipedia_link + ">Wikipedia</a><br>" : "";
-		var home = airport.home_link ? "<a target=\"_blank\" href=" + airport.home_link + ">Website</a>" : "";
+			var home = airport.home_link ? "<a target=\"_blank\" href=" + airport.home_link + ">Website</a>" : "";
 	    var marker = L.marker([airport.latitude_deg, airport.longitude_deg]).bindPopup(
 						"<strong>" + airport.name + "</strong><br>" +
 						"<strong>City: </strong>" + airport.municipality + "<br>" +
@@ -71,7 +71,7 @@ $(function() {
 	// 			hist[key] = 0;
 	// 		});
 	// 	});
-	// 
+	//
 	// 	//load airports json
 	// 	$.getJSON('static/res/airports_withoutheliports.json', function(data) {
 	// 		var l = data.length

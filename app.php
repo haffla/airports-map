@@ -34,7 +34,7 @@ $app->get('/within', function (Request $request) use ($app) {
 
 	$rows = array();
 
-	while($r = $result->fetch(PDO::FETCH_ASSOC)) {
+	while($r = $st->fetch(PDO::FETCH_ASSOC)) {
 	    $rows[] = $r;
 	}
 

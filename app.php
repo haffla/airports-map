@@ -36,14 +36,9 @@ $app->get('/', function () use ($app) {
 
 $app->get('/within', function (Request $request) use ($app) {
 
-  $type = $request->get('type');
   $query = "SELECT * FROM airports WHERE (latitude_deg BETWEEN " .
   	$request->get('lat1') . " AND " . $request->get('lat2') . ") AND (longitude_deg BETWEEN " .
   	$request->get('lon1') . " AND " . $request->get('lon2') .")";
-
-    if($request->get('type') != 'all') {
-      $query .= " AND type = '$type'";
-    }
 
   $st = $app['pdo']->prepare($query);
   $st->execute();

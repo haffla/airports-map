@@ -29,7 +29,7 @@ $app->get('/within', function (Request $request) use ($app) {
  		$request->get('lat1') . ' AND ' . $request->get('lat2') . ') AND (longitude_deg BETWEEN ' .
  		$request->get('lon1') . ' AND ' . $request->get('lon2') .') AND type = "large_airport"';
 
-  $st = $app['pdo']->prepare('SELECT name FROM airports');
+  $st = $app['pdo']->prepare($query);
   $st->execute();
 
 	$rows = array();

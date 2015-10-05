@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta lang="en">
-		
+
 		<link rel="stylesheet" href="static/css/reset.css">
 		<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
 		<link rel="stylesheet" href="static/css/jquery-ui.min.css">
@@ -20,22 +20,19 @@
    			</div>
   			<div>
 	      		<ul class="nav navbar-nav">
-				  <li class="dropdown">
+				  <!-- <li class="dropdown">
 				    <a class="dropdown-toggle" data-toggle="dropdown">Toggle Airport Size</a>
 				    <ul class="dropdown-menu" id="dropdown">
-				    	<li id="toggle_small" class="modeToggle" value="small_airport" onclick="setMode(1);setMarkers();">
-				    		<a>Small Airports</a>
-				    	</li>
-				    	<li id="toggle_medium" class="modeToggle" value="medium_airport" onclick="setMode(2);setMarkers();">
+				    	<li id="toggle_medium" class="modeToggle" data-a="medium_airport">
 				    		<a>Medium Airports</a>
 				    	</li>
-				    	<li id="toggle_large" class="modeToggle" value="large_airport" onclick="setMode(3);setMarkers();">
+				    	<li id="toggle_large" class="modeToggle" data-a="large_airport">
 				    		<a>Large Airports</a>
 				    	</li>
 				    </ul>
-				  </li>
+				  </li> -->
 				  <li><a href="#" onclick="getStatistics()">Show Statistics</a></li>
-				  <li><a>Mode: <span style="background-color: #FFCC00; border-radius: 4px; padding: 2px;" id="airport_feedback">Large Airports</span></a></li>
+				  <!-- <li><a>Mode: <span style="background-color: #FFCC00; border-radius: 4px; padding: 2px;" id="airport_feedback">Large Airports</span></a></li> -->
 				  <li><a>Displaying <span style="background-color: #C7AFBD; border-radius: 4px; padding: 2px;" id="markers_count">...</span><span> Airports</span></a></li>
 				  <li><a id="loader"><img src="static/res/ajax-loader.gif"></a></li>
 
@@ -44,8 +41,8 @@
 				  </li>
 				</ul>
 		   	</div>
-		</nav> 
-		
+		</nav>
+
 		<section id="stats">
 			<button onclick="hideStats()">Hide Statistics >></button>
 			<h2 id="statsName"></h2>

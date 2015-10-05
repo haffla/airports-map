@@ -8,44 +8,39 @@ var airports_count = 0;
 
 var before, after, wasMode, currentMode; // 1 = small, 2 = medium, 3 = large
 
-//When document is ready
 $(function() {
 	token = L.mapbox.accessToken = "pk.eyJ1IjoiY29ycm9kaXplIiwiYSI6IkN4ZTAtZFUifQ.30pfMZ3Nqd5mJoLIrQ19uQ";
 	map = L.mapbox.map("map", "corrodize.j40899hk");
 
-	var markerLayerGroup = L.layerGroup().addTo(map);
+	$('.modeToggle').on('click', function(event) {
+		getPins($(this).val());
+		console.log($(this).data('a'));
+	});
 
-	// if(navigator.geolocation) {
-	// 	navigator.geolocation.getCurrentPosition(function(position) {
-	// 		map.setView([position.coords.latitude, position.coords.longitude], 5);
-	// 	});
-	// }
+	var markerLayerGroup = L.layerGroup().addTo(map);
 
 	map.on("click", function() {
 		hideStats();
 	});
 
-	//setupData();
 	map.on('dragend', getPins);
 	map.on('zoomend', getPins);
-	//map.whenReady(getPins);
 
-	function getPins(e){
+	function getPins(){
 	  $("#loader").css("display", "block");
 	  bounds = map.getBounds();
+		console.log(bounds);
 	  url = "within?lat1=" + bounds.getSouthWest().lat + "&lon1="
 						+ bounds.getSouthWest().lng + "&lat2=" + bounds.getNorthEast().lat
-						+ "&lon2=" + bounds.getNorthEast().lng + "&type=large_airport";
+						+ "&lon2=" + bounds.getNorthEast().lng;
 	  $.get(url, pinTheMap, "json");
 	}
 
 	function pinTheMap(data){
-	  //clear the current map pins
 	  var airports = $.parseJSON(data);
-	  //map.removeLayer(markerLayerGroup);
 	  map.removeLayer(markers);
+		$('#markers_count').html(data.length);
 
-	  //add the new pins
 	  var markerArray = [];
 	  var l = data.length;
 	  for (var key in airports){
@@ -62,26 +57,20 @@ $(function() {
 						home
 					);
 	    markerArray.push(marker);
-
-
 	  }
 	  markers = new L.MarkerClusterGroup();
-	  //markerLayerGroup = L.layerGroup(markerArray).addTo(map);
 
 	  $.each(markerArray, function(key, res) {
 	  	markers.addLayer(res);
 	  })
 
-  	  map.addLayer(markers);
+  	map.addLayer(markers);
 	  $("#loader").css("display", "none");
 
 	}
 
-	//Fills json data into two arrays
 	function setupData() {
-		var before = new Date().getTime();
 
-		//load countries json
 		$.getJSON('static/res/countries.json', function(data) {
 			$.each(data, function (key, res) {
 				countries[key] = res;

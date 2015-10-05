@@ -33,7 +33,9 @@ $(function() {
 	function getPins(e){
 	  $("#loader").css("display", "block");
 	  bounds = map.getBounds();
-	  url = "within?lat1=" + bounds.getSouthWest().lat + "&lon1=" + bounds.getSouthWest().lng + "&lat2=" + bounds.getNorthEast().lat + "&lon2=" + bounds.getNorthEast().lng;
+	  url = "within?lat1=" + bounds.getSouthWest().lat + "&lon1="
+						+ bounds.getSouthWest().lng + "&lat2=" + bounds.getNorthEast().lat
+						+ "&lon2=" + bounds.getNorthEast().lng + "&type=large_airport";
 	  $.get(url, pinTheMap, "json");
 	}
 
@@ -42,7 +44,7 @@ $(function() {
 	  var airports = $.parseJSON(data);
 	  //map.removeLayer(markerLayerGroup);
 	  map.removeLayer(markers);
-	 
+
 	  //add the new pins
 	  var markerArray = [];
 	  var l = data.length;
@@ -53,15 +55,15 @@ $(function() {
 	    var marker = L.marker([airport.latitude_deg, airport.longitude_deg]).bindPopup(
 						"<strong>" + airport.name + "</strong><br>" +
 						"<strong>City: </strong>" + airport.municipality + "<br>" +
-						//"<strong>Country: </strong>" + countries[res.iso_country] + "<br>" + 
+						//"<strong>Country: </strong>" + countries[res.iso_country] + "<br>" +
 						"<strong>Elevation: </strong>" + Math.round(airport.elevation_ft * 0.3048) + "m<br>" +
 						"<strong>IATA Code: </strong>" + airport.iata_code + "<br>" +
 						wiki +
 						home
 					);
 	    markerArray.push(marker);
-	    
-	    
+
+
 	  }
 	  markers = new L.MarkerClusterGroup();
 	  //markerLayerGroup = L.layerGroup(markerArray).addTo(map);
@@ -69,24 +71,24 @@ $(function() {
 	  $.each(markerArray, function(key, res) {
 	  	markers.addLayer(res);
 	  })
-	        
+
   	  map.addLayer(markers);
 	  $("#loader").css("display", "none");
-	  
+
 	}
 
 	//Fills json data into two arrays
 	function setupData() {
 		var before = new Date().getTime();
-		
-		//load countries json	
+
+		//load countries json
 		$.getJSON('static/res/countries.json', function(data) {
 			$.each(data, function (key, res) {
 				countries[key] = res;
 				hist[key] = 0;
 			});
 		});
-		
+
 		//load airports json
 		$.getJSON('static/res/airports_withoutheliports.json', function(data) {
 			var l = data.length
@@ -106,7 +108,7 @@ $(function() {
 					}).bindPopup(
 						"<strong>" + res.name + "</strong><br>" +
 						"<strong>City: </strong>" + res.municipality + "<br>" +
-						"<strong>Country: </strong>" + countries[res.iso_country] + "<br>" + 
+						"<strong>Country: </strong>" + countries[res.iso_country] + "<br>" +
 						"<strong>Elevation: </strong>" + Math.round(res.elevation_ft * 0.3048) + "m<br>" +
 						"<strong>IATA Code: </strong>" + res.iata_code + "<br>" +
 						wiki +
@@ -122,12 +124,12 @@ $(function() {
 					airports_large[res.id] = fdata;
 				}
 				var autocomplete = "";
-					
+
 				if(res.name) autocomplete += res.name;
 				if(res.iata_code) autocomplete += " (" + res.iata_code + ")";
 				if(res.municipality) autocomplete += ", " + res.municipality;
 				if(res.iso_country) autocomplete += ", " + countries[res.iso_country];
-			
+
 				airports_simple[res.id] = autocomplete;
 			}
 
@@ -138,7 +140,7 @@ $(function() {
 			$("#search_input").autocomplete({
 				source: _.values(airports_simple), //fill autocomplete with values of airports_simple
 				minLength: 3,
-				select: function( event, ui ) 
+				select: function( event, ui )
 						{
 							var selected = ui.item.value; //value of selected item
 							var airp_id = (_.invert(airports_simple))[selected]; //get id of that airport by inverting hash
@@ -152,18 +154,18 @@ $(function() {
 			 					panToMarker(airp_id, airports_large);
 			 				}
 						}
-						
+
 			});
 
 			console.log(new Date().getTime() - before);
 
 		});
 
-		
-			
+
+
 	}
 
-	
+
 
 	function setMode(value) {
 		wasMode = currentMode;
@@ -191,4 +193,3 @@ $(function() {
 	 }
 
 });
-

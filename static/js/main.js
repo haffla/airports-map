@@ -39,8 +39,8 @@ $(function() {
 	  var markerArray = [];
 	  for (var key in airports){
 	  	var airport = airports[key];
-	    var wiki = airport.wikipedia_link ? "<a target=\"_blank\" href=" + airport.wikipedia_link + ">Wikipedia</a><br>" : "";
-			var home = airport.home_link ? "<a target=\"_blank\" href=" + airport.home_link + ">Website</a>" : "";
+	    var wiki = (airport.wikipedia_link != 0) ? "<a target=\"_blank\" href=" + airport.wikipedia_link + ">Wikipedia</a><br>" : "";
+			var home = (airport.home_link != 0) ? "<a target=\"_blank\" href=" + airport.home_link + ">Website</a>" : "";
 	    var marker = L.marker([airport.latitude_deg, airport.longitude_deg]).bindPopup(
 						"<strong>" + airport.name + "</strong><br>" +
 						"<strong>City: </strong>" + airport.municipality + "<br>" +

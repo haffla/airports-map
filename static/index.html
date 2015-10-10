@@ -20,36 +20,11 @@
    			</div>
   			<div>
 	      		<ul class="nav navbar-nav">
-				  <!-- <li class="dropdown">
-				    <a class="dropdown-toggle" data-toggle="dropdown">Toggle Airport Size</a>
-				    <ul class="dropdown-menu" id="dropdown">
-				    	<li id="toggle_medium" class="modeToggle" data-a="medium_airport">
-				    		<a>Medium Airports</a>
-				    	</li>
-				    	<li id="toggle_large" class="modeToggle" data-a="large_airport">
-				    		<a>Large Airports</a>
-				    	</li>
-				    </ul>
-				  </li> -->
-				  <li><a href="#" onclick="getStatistics()">Show Statistics</a></li>
-				  <!-- <li><a>Mode: <span style="background-color: #FFCC00; border-radius: 4px; padding: 2px;" id="airport_feedback">Large Airports</span></a></li> -->
 				  <li><a>Displaying <span style="background-color: #C7AFBD; border-radius: 4px; padding: 2px;" id="markers_count">...</span><span> Airports</span></a></li>
 				  <li><a id="loader"><img src="static/res/ajax-loader.gif"></a></li>
-
-				  <li id="form_div">
-					<input id="search_input" type="text" placeholder="Search by Airports, Cities, Countries or IATA Code">
-				  </li>
 				</ul>
 		   	</div>
 		</nav>
-
-		<section id="stats">
-			<button onclick="hideStats()">Hide Statistics >></button>
-			<h2 id="statsName"></h2>
-			<ul id="statsContainer"></ul>
-			<div id="statsOverview"><ul></ul></div>
-		</section>
-		<section id="map"></section>
 
 		<script type="text/javascript" src="static/js/jquery-2.1.1.min.js"></script>
 		<script type="text/javascript" src="static/js/jquery-ui.min.js"></script>
